@@ -15,6 +15,21 @@ export default function ListaDeTareas(){
         }
     }
 
+    const eliminarTarea = id =>{
+        const tareasActualizadas = tareas.filter(tarea => tarea.id !==id);
+        setTareas(tareasActualizadas);
+    }
+
+    const completarTarea = id =>{
+        const tareaActualizada = tareas.map(tarea =>{
+            if (tarea,id === id){
+                tarea.completada = !tarea.completada;
+            }
+            return tarea;
+        })
+        setTareas(tareaActualizada);
+    }
+
     return(
         <>
         <TareFormulario onSubmit={agregarTarea}/>
@@ -25,7 +40,10 @@ export default function ListaDeTareas(){
                         key={tarea.id}
                         id={tarea.id}
                         texto={tarea.texto}
-                        completado={tarea.completada}
+                        completada={tarea.completada}
+                        completarTarea={completarTarea}
+                        eliminarTarea={eliminarTarea}
+
                     />
                 )
             }
